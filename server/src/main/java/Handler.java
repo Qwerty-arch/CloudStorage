@@ -8,6 +8,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.ExecutorService;
@@ -54,7 +55,7 @@ public class Handler extends ChannelInboundHandlerAdapter {
                     byte[] fileName = new byte[nextLength];
                     buf.readBytes(fileName);
                     System.out.println("STATE: Filename received - _" + new String(fileName, "UTF-8"));
-                    out = new BufferedOutputStream(new FileOutputStream("_" + new String(fileName)));
+                    out = new BufferedOutputStream(new FileOutputStream("server/server_storage/" + new String(fileName)));
                     currentState = State.FILE_LENGTH;
                 }
             }
